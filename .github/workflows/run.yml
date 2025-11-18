@@ -56,19 +56,6 @@ jobs:
           max_attempts: 3
           command: npm start
       
-      # Telegram推送步骤（已整合到原工作流中）
-      - name: 📢 Send Telegram Notification
-        uses: appleboy/telegram-action@master
-        with:
-          to: ${{ vars.TELEGRAM_CHAT_ID }}
-          token: ${{ vars.TELEGRAM_TOKEN }}
-          message: |
-            天翼网盘签到完成！
-            执行状态：${{ job.status }}
-            查看详细日志：${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
-          # 若需代理，取消下方注释并替换为你的代理地址（如Clash默认端口）
-          # socks5: "socks5://127.0.0.1:7890"
-
       - name: 📹 Save cached Cookie
         uses: actions/cache/save@v4
         with:
